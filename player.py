@@ -37,7 +37,7 @@ class Player:
 
         players = []
         for player in game_state['players']:
-            player.append(player['name'])
+            players.append(player['name'])
 
         print 'players %s' % players
 
