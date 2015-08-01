@@ -22,6 +22,7 @@ class Player:
         return False
 
     def betRequest(self, game_state):
+
         print pp.pprint(game_state)
         if not 'in_action' in game_state.keys():
             return 0
@@ -35,6 +36,7 @@ class Player:
 
         rais = game_state['minimum_raise']
         if len(community_cards) == 0:
+            print 'cards:'
             print pp.pprint(my_cards)
             # pre flop
             hand = Hand(my_cards)
@@ -42,7 +44,7 @@ class Player:
                 if call >= blind*3:
                     return call
                 else:
-                    return blind*3
+                    return call + rais
             if self.pre_flop_power3(hand):
                 return 0
             if call < blind * 3:
@@ -50,15 +52,20 @@ class Player:
             return 0
 
         else:
+            print 'cards:'
             cards = my_cards + community_cards
             print pp.pprint(cards)
             hand = Hand(cards)
+
             if hand.rank >= 2:
                 return call + 2 * rais
+
             if hand.rank == 1 and hand.value >= 10:
                 return call + rais
+
             if hand.rank == 0 and hand.value == 14:
                 return call
+
             if hand.rank == 0 and hand.value < 6:
                 return 0
         return call
