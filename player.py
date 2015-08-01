@@ -14,9 +14,7 @@ class Player:
         return False
 
     def pre_flop_power3(self, hand):
-        if hand.rank == 1 and hand.value >= 10:
-            return True
-        if hand.rank == 0 and hand.value >= 14 and hand.value2 >= 10:
+        if hand.rank == 0 and hand.value <= 7 and hand.value2 >= 2:
             return True
         return False
 
