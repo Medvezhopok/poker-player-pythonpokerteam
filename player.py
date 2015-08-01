@@ -54,17 +54,19 @@ class Player:
             hand = Hand(my_cards)
             print "HAND %s" % hand
             if self.pre_flop_power1(hand):
+                print 'power'
                 if call >= blind*3:
                     return call
                 else:
                     return call + rais
             if self.pre_flop_power3(hand):
+                print 'pass'
                 return 0
-
+            print 'middle'
             # if sevenbits['bet'] > 0:
             #     return sevenbits['bet'] * 2
 
-            if call < blind * 3 and bet_index < 1:
+            if call <= blind * 3 and bet_index < 1:
                 return call
             if bet_index >= 1:
                 return call + rais
