@@ -119,6 +119,7 @@ class Player:
                     return call
 
         except Exception as e:
+            print 'exception'
             print e
         return 0
 
