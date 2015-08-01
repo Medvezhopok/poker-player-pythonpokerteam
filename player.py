@@ -48,8 +48,11 @@ class Player:
 
         rais = game_state['minimum_raise']
         if len(community_cards) == 0:
-            print 'cards:'
-            print pp.pprint(my_cards)
+            print 'cards_str:'
+            cards_str = []
+            for c in my_cards:
+                cards_str.append(str(c))
+            print cards_str
             # pre flop
 
             hand = Hand(my_cards)
@@ -75,9 +78,12 @@ class Player:
             return call
 
         else:
-            print 'cards:'
+            print 'board_str:'
             cards = my_cards + community_cards
-            print pp.pprint(cards)
+            board_str = []
+            for c in community_cards:
+                board_str.append(str(c))
+            print board_str
             hand = Hand(cards)
             print "HAND %s" % hand
             if hand.rank >= 2:
