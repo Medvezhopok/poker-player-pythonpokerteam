@@ -32,7 +32,8 @@ class Player:
         community_cards = game_state['community_cards']
         pot = game_state['pot']
         blind = game_state['small_blind'] * 2
-        raise = game_state['minimum_raise']
+
+        rais = game_state['minimum_raise']
         if len(community_cards) == 0:
             # pre flop
             hand = Hand(my_cards)
@@ -43,6 +44,7 @@ class Player:
                     return blind*3
             if self.pre_flop_power3(hand):
                 return 0
+            if call < blind * 3
             return call
         else:
             cards = my_cards + community_cards
