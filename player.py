@@ -5,7 +5,7 @@ import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
 class Player:
-    VERSION = "Inky 0.18"
+    VERSION = "Inky 0.19"
 
     def pre_flop_power1(self, hand):
         print 'check for power hand for %s' % hand
@@ -50,7 +50,7 @@ class Player:
             if len(community_cards) == 5 and hand.rank > 5:
                 return me['stack']
 
-            isAllIn = False
+            # is there all in
             for p in players:
                 if p['status'] == 'active' and p['bet'] >= p['stack'] and p['name'] != 'PythonPokerTeam':
                     return 0
@@ -84,7 +84,7 @@ class Player:
                         enemy = p
                         break
                 if enemy and me['stack'] > 6 * enemy['stack']:
-                    return call + rais
+                    return call + max(int(enemy['stack'] / 2), rais)
                 if hand.rank > 2:
                     q = random.random()
                     if q > 0.95:
