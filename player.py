@@ -76,7 +76,7 @@ class Player:
             cards = my_cards + community_cards
             print pp.pprint(cards)
             hand = Hand(cards)
-            print "HAND %" % hand
+            print "HAND %s" % hand
             if hand.rank >= 2:
                 return call + 2 * rais
 
