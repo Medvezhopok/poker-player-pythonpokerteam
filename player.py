@@ -5,7 +5,7 @@ import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
 class Player:
-    VERSION = "Inky 0.12"
+    VERSION = "Inky 0.14"
 
     def pre_flop_power1(self, hand):
         print 'check for power hand for %s' % hand
@@ -45,7 +45,7 @@ class Player:
 
             if len(active_players) > 2:
                 if not self.pre_flop_power3(hand):
-                    if hand.rank > 1:
+                    if hand.rank > 2:
                         q = random.random()
                         if q > 0.95:
                             return me['stack']
@@ -55,6 +55,8 @@ class Player:
                             return call + 2 * rais
                         else:
                             return call + rais
+                    if hand.rank == 2:
+                        return call + rais
                     if hand.rank == 1 and hand.value > 11:
                         return call + rais
                     if call > 80:
