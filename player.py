@@ -4,7 +4,7 @@ import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
 class Player:
-    VERSION = "Inky 0.1"
+    VERSION = "Inky 0.2"
 
     def power(self, hand):
         pass
