@@ -61,8 +61,8 @@ class Player:
             if self.pre_flop_power3(hand):
                 return 0
 
-            if sevenbits['bet'] > 0:
-                return sevenbits['bet'] * 2
+            # if sevenbits['bet'] > 0:
+            #     return sevenbits['bet'] * 2
 
             if call < blind * 3 and bet_index < 1:
                 return call
