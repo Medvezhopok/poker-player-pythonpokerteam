@@ -35,6 +35,7 @@ class Player:
 
         rais = game_state['minimum_raise']
         if len(community_cards) == 0:
+            print pp.pprint(my_cards)
             # pre flop
             hand = Hand(my_cards)
             if self.pre_flop_power1(hand):
@@ -50,9 +51,10 @@ class Player:
 
         else:
             cards = my_cards + community_cards
+            print pp.pprint(cards)
             hand = Hand(cards)
             if hand.rank >= 2:
-                return me['stack']
+                return call + 3* rais
             else:
                 return call
         return call
