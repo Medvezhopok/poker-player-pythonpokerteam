@@ -85,13 +85,13 @@ class Player:
                 print 'pass'
                 return 0
             print 'middle'
-            # if sevenbits['bet'] > 0:
-            #     return sevenbits['bet'] * 2
 
             if call <= blind * 3 and bet_index < 1:
                 return call
-            if bet_index >= 1:
-                return call + rais
+            if bet_index >= 1 and 3 * me['bet'] <= call:
+                return 0
+            else:
+                return call
 
             return 0
 
