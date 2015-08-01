@@ -32,11 +32,12 @@ class Player:
         return False
 
     def betRequest(self, game_state):
-
-        print pp.pprint(game_state)
-        print("QQQ")
         if not 'in_action' in game_state.keys():
             return 0
+
+        for p in game_state['players']:
+            print("QQQ, %d, %s, %s" % (game_state['round'], p['name'], p['status']))
+
         self.game_state = game_state
         me = game_state['players'][game_state['in_action']]
         call = game_state['current_buy_in'] - me['bet']
