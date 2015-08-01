@@ -10,7 +10,7 @@ class Player:
         print 'check for power hand for %s' % hand
         if hand.rank > 1:
             return True
-        if hand.rank == 1 and hand.value >= 10:
+        if hand.rank == 1 and hand.value >= 11:
             return True
         if hand.rank == 0 and hand.value > 13 and hand.value2 >= 11:
             return True
@@ -53,7 +53,7 @@ class Player:
                     return 0
             else:
                 if self.pre_flop_power1(hand):
-                    return call + rais
+                    return call + 2 * rais
                 if self.pre_flop_power3(hand):
                     return 0
                 if call > 150:
