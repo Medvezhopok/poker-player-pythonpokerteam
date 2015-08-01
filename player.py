@@ -53,6 +53,10 @@ class Player:
             names.remove('PythonPokerTeam')
             enemy_name = names[0]
             print 'enemy_name=%s' % enemy_name
+            enemy_player = None
+            for player in game_state['players']:
+                if player['name'] == enemy_player:
+                    enemy_player = player
 
         players = []
         sevenbits = None
