@@ -37,7 +37,10 @@ class Player:
         else:
             cards = my_cards + community_cards
             hand = Hand(my_cards)
-
+            if hand.rank >= 2:
+                return me['stack']
+            else:
+                return call
         return me['stack']
 
     def showdown(self, game_state):
