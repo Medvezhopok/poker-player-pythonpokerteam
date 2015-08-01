@@ -6,6 +6,9 @@ pp = pprint.PrettyPrinter(indent=4)
 class Player:
     VERSION = "Inky 0.1"
 
+    def power(self, hand):
+        pass
+
     def pre_flop_power1(self, hand):
         if hand.rank == 1 and hand.value >= 10:
             return True
@@ -27,11 +30,17 @@ class Player:
         call = game_state['current_buy_in'] - me['bet']
         my_cards = me['hole_cards']
         community_cards = game_state['community_cards']
+        pot = game_state['pot']
+        blind = game_state['small_blind'] * 2
+        raise = game_state['minimum_raise']
         if len(community_cards) == 0:
             # pre flop
             hand = Hand(my_cards)
             if self.pre_flop_power1(hand):
-                return me['stack']
+                if call >= blind*3:
+                    return call
+                else:
+                    return blind*3
             if self.pre_flop_power3(hand):
                 return 0
             return call
