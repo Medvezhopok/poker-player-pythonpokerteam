@@ -37,8 +37,11 @@ class Player:
         bet_index = game_state['bet_index']
 
         players = []
+        sevenbits = None
         for player in game_state['players']:
             players.append(player['name'])
+            if player['name'] == 'sevenbits':
+                sevenbits = player
 
         print 'players %s' % players
 
@@ -47,6 +50,7 @@ class Player:
             print 'cards:'
             print pp.pprint(my_cards)
             # pre flop
+
             hand = Hand(my_cards)
             print "HAND %" % hand
             if self.pre_flop_power1(hand):
@@ -56,12 +60,16 @@ class Player:
                     return call + rais
             if self.pre_flop_power3(hand):
                 return 0
+
+            if sevenbits['bet'] > 0:
+                return sevenbits['bet'] * 2
+
             if call < blind * 3 and bet_index < 1:
                 return call
             if bet_index >= 1:
                 return call + rais
 
-            return 0
+            return call
 
         else:
             print 'cards:'
