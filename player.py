@@ -34,6 +34,12 @@ class Player:
         pot = game_state['pot']
         blind = game_state['small_blind'] * 2
 
+        players = []
+        for player in game_state['players']:
+            player.append(player['name'])
+
+        print 'players %s' % players
+
         rais = game_state['minimum_raise']
         if len(community_cards) == 0:
             print 'cards:'
