@@ -6,6 +6,16 @@ pp = pprint.PrettyPrinter(indent=4)
 class Player:
     VERSION = "Inky 0.2"
 
+    def isOneVsOne(self):
+        active = 0
+        names = []
+        for p in self.game_state['players']:
+            if p['status'] == 'active':
+                active += 1
+                names.append(p['name'])
+        if active == 2:
+            return True, names
+
     def power(self, hand):
         pass
 
@@ -35,6 +45,12 @@ class Player:
         pot = game_state['pot']
         blind = game_state['small_blind'] * 2
         bet_index = game_state['bet_index']
+
+        isOneVsOne, names = self.isOneVsOne()
+        if isOneVsOne and 'PythonPokerTeam' in names:
+            names.remove('PythonPokerTeam')
+            enemy_name = names[0]
+            print 'enemy_name=%s' % enemy_name
 
         players = []
         sevenbits = None
