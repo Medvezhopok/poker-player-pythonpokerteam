@@ -52,8 +52,7 @@ class Player:
             # pre flop
 
             hand = Hand(my_cards)
-            print "HAND"
-            print hand
+            print "HAND %s" % hand
             if self.pre_flop_power1(hand):
                 if call >= blind*3:
                     return call
