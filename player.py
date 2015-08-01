@@ -24,6 +24,7 @@ class Player:
     def betRequest(self, game_state):
 
         print pp.pprint(game_state)
+        print("QQQ")
         if not 'in_action' in game_state.keys():
             return 0
         self.game_state = game_state
