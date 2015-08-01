@@ -27,7 +27,6 @@ class Player:
                 return 0
             active_players = []
             for p in game_state['players']:
-                print("QQQ, %d, %s, %s" % (game_state['round'], p['name'], p['status']))
                 if 'active' == p['status']:
                     active_players.append(p['name'])
 
@@ -45,6 +44,8 @@ class Player:
 
             if len(active_players) > 2:
                 if not self.pre_flop_power3(hand):
+                    if hand.rank == 1 and hand.value > 11:
+                        return  call + rais
                     if call > 80:
                         return 0
                     else:
