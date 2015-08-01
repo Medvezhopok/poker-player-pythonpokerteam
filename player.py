@@ -5,7 +5,7 @@ import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
 class Player:
-    VERSION = "Inky 0.18b"
+    VERSION = "Inky 0.31"
 
     def pre_flop_power1(self, hand):
         print 'check for power hand for %s' % hand
@@ -83,6 +83,12 @@ class Player:
                     if p['name'] != 'PythonPokerTeam':
                         enemy = p
                         break
+                if enemy:
+                    if enemy['name'] == 'Awesome Incredible Poker Bot' and len(community_cards) == 0:
+                        if hand.rank == 1 or hand.value >= 11:
+                            return call + max(rais, 60)
+                        else:
+                            return  call + max(2 * rais, 90)
                 if enemy and me['stack'] > 6 * enemy['stack']:
                     return call + rais
                 if hand.rank > 2:
