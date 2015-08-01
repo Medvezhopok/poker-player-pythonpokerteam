@@ -34,9 +34,10 @@ class Player:
                 return me['stack']
             if self.pre_flop_power3(hand):
                 return 0
+            return call
         else:
             cards = my_cards + community_cards
-            hand = Hand(my_cards)
+            hand = Hand(cards)
             if hand.rank >= 2:
                 return me['stack']
             else:
