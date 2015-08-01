@@ -60,6 +60,10 @@ class Player:
                     enemy_player = player
                     if enemy_name == 'Awesome Incredible Poker Bot':
                         return call + rais
+                    if enemy_name == 'LeanNodeJS':
+                        if enemy_player['stack'] <= 2*rais:
+                            return call + enemy_player['stack']
+                        return call + rais
 
         if len(community_cards) == 0:
             print 'cards_str:'
