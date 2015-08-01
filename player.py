@@ -33,6 +33,7 @@ class Player:
         community_cards = game_state['community_cards']
         pot = game_state['pot']
         blind = game_state['small_blind'] * 2
+        bet_index = game_state['bet_index']
 
         players = []
         for player in game_state['players']:
@@ -53,8 +54,11 @@ class Player:
                     return call + rais
             if self.pre_flop_power3(hand):
                 return 0
-            if call < blind * 3:
+            if call < blind * 3 and bet_index < 1:
                 return call
+            if bet_index >= 1:
+                return call + rais
+
             return 0
 
         else:
