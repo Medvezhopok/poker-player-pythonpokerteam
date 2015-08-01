@@ -4,7 +4,7 @@ import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
 class Player:
-    VERSION = "Inky 0.10"
+    VERSION = "Inky 0.11"
 
     def pre_flop_power1(self, hand):
         print 'check for power hand for %s' % hand
