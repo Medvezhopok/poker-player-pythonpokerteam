@@ -15,6 +15,7 @@ class Player:
                 names.append(p['name'])
         if active == 2:
             return True, names
+        return False, []
 
     def power(self, hand):
         pass
