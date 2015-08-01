@@ -29,6 +29,9 @@ class Hand:
             self.value = data.value()
             self.value2 = data.value2()
 
+    def __str__(self):
+        return "hank=%s;value=%s;value2=%s" % (self.rank, self.value, self.value2)
+
     def __cmp__(self, other):
         if self.rank != other.rank:
             return cmp(self.rank, other.rank)
