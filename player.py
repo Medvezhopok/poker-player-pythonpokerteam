@@ -74,7 +74,7 @@ class Player:
             if bet_index >= 1:
                 return call + rais
 
-            return call
+            return 0
 
         else:
             print 'board_str:'
