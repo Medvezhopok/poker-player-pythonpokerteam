@@ -54,8 +54,10 @@ class Player:
             print pp.pprint(cards)
             hand = Hand(cards)
             if hand.rank >= 2:
-                return call + 3* rais
-            else:
+                return call + 2 * rais
+            if hand.rank == 1 and hand.value >= 10:
+                return call + rais
+            if hand.rank == 0 and hand.value == 14:
                 return call
         return call
 
