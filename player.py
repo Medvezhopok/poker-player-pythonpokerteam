@@ -41,7 +41,7 @@ class Player:
                 return me['stack']
             else:
                 return call
-        return me['stack']
+        return call
 
     def showdown(self, game_state):
         pass
