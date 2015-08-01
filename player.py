@@ -5,7 +5,7 @@ import pprint
 pp = pprint.PrettyPrinter(indent=4)
 
 class Player:
-    VERSION = "Inky 0.19"
+    VERSION = "Inky 0.21"
 
     def pre_flop_power1(self, hand):
         print 'check for power hand for %s' % hand
@@ -55,18 +55,36 @@ class Player:
                 if p['status'] == 'active' and p['bet'] >= p['stack'] and p['name'] != 'PythonPokerTeam':
                     return 0
 
+            if len(community_cards) == 3 and hand.rank > 3:
+                q = random.random()
+                if q > 0.95:
+                    return me['stack']
+                if q > 0.85:
+                    return call + 3 * rais
+                if q > 0.5:
+                    return call + 2 * rais
+                if q > 0.3:
+                    return call + rais
+                else:
+                    return call
+
+            def up_a_bit(call, rais):
+                q = random.random()
+                if q > 0.95:
+                    return me['stack']
+                if q > 0.85:
+                    return call + 3 * rais
+                if q > 0.5:
+                    return call + 2 * rais
+                if q > 0.3:
+                    return call + rais
+                else:
+                    return call
+
             if len(active_players) > 2:
                 if not self.pre_flop_power3(hand):
                     if hand.rank > 2:
-                        q = random.random()
-                        if q > 0.95:
-                            return me['stack']
-                        if q > 0.85:
-                            return call + 3 * rais
-                        if q > 0.5:
-                            return call + 2 * rais
-                        else:
-                            return call + rais
+                        return up_a_bit(call, rais)
                     if hand.rank == 2:
                         return call + rais
                     if hand.rank == 1 and hand.value > 11:
@@ -86,15 +104,7 @@ class Player:
                 if enemy and me['stack'] > 6 * enemy['stack']:
                     return call + max(int(enemy['stack'] / 2), rais)
                 if hand.rank > 2:
-                    q = random.random()
-                    if q > 0.95:
-                        return me['stack']
-                    if q > 0.85:
-                        return call + 3 * rais
-                    if q > 0.5:
-                        return call + 2 * rais
-                    else:
-                        return call + rais
+                    return up_a_bit(call, rais)
                 if hand.rank == 2:
                     return call + rais
                 if hand.rank == 1 and hand.value > 11:
