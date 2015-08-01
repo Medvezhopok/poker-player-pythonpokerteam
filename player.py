@@ -44,7 +44,8 @@ class Player:
                     return blind*3
             if self.pre_flop_power3(hand):
                 return 0
-            if call < blind * 3
+            if call < blind * 3:
+                return call
             return call
         else:
             cards = my_cards + community_cards
