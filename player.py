@@ -46,7 +46,7 @@ class Player:
                 return 0
             if call < blind * 3:
                 return call
-            return 0
+            return call
 
         else:
             cards = my_cards + community_cards
