@@ -59,6 +59,8 @@ class Player:
                 return call + rais
             if hand.rank == 0 and hand.value == 14:
                 return call
+            if hand.rank == 0 and hand.value < 6:
+                return 0
         return call
 
     def showdown(self, game_state):
