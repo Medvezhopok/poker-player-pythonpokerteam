@@ -77,9 +77,12 @@ class Player:
             return call
 
         else:
-            print 'cards:'
+            print 'board_str:'
             cards = my_cards + community_cards
-            print pp.pprint(cards)
+            board_str = []
+            for c in community_cards:
+                board_str.append(str(c))
+            print board_str
             hand = Hand(cards)
             print "HAND %s" % hand
             if hand.rank >= 2:
