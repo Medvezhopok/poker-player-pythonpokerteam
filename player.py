@@ -47,7 +47,7 @@ class Player:
 
         rais = game_state['minimum_raise']
         if len(community_cards) == 0:
-            print 'cards:'
+            print 'cards_str:'
             cards_str = []
             for c in my_cards:
                 cards_str.append(str(c))
