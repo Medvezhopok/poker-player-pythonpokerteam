@@ -48,6 +48,8 @@ class Player:
         blind = game_state['small_blind'] * 2
         bet_index = game_state['bet_index']
         rais = game_state['minimum_raise']
+        hand = Hand(my_cards)
+        print "HAND %s" % hand
 
         isOneVsOne, names = self.isOneVsOne()
         if isOneVsOne and 'PythonPokerTeam' in names:
@@ -58,12 +60,17 @@ class Player:
             for player in game_state['players']:
                 if player['name'] == enemy_player:
                     enemy_player = player
-                    if enemy_name == 'Awesome Incredible Poker Bot':
-                        return call + rais
-                    if enemy_name == 'LeanNodeJS':
-                        if enemy_player['stack'] <= 2*rais:
-                            return call + enemy_player['stack']
-                        return call + rais
+            if enemy_name == 'sevenbits':
+                if not self.pre_flop_power1(hand):
+                    return 0
+                return call + rais
+            if enemy_name == 'Awesome Incredible Poker Bot':
+                return call + rais
+            if enemy_name == 'LeanNodeJS':
+                if hand.rank == 1:
+                    if enemy_player['stack'] <= 4 * rais:
+                        return me['stack']
+                    return call + rais
 
         if len(community_cards) == 0:
             print 'cards_str:'
@@ -72,9 +79,6 @@ class Player:
                 cards_str.append(str(c))
             print cards_str
             # pre flop
-
-            hand = Hand(my_cards)
-            print "HAND %s" % hand
             if self.pre_flop_power1(hand):
                 print 'power'
                 if call >= blind*3:
